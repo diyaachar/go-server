@@ -1,5 +1,6 @@
 #! bin/bash
-/etc/init.d/go-server start
+#/etc/init.d/go-server start
+service go-server start
 if [[ ${LDAP_ENABLED} == "true" ]]; then
   GOCD_LDAP_CONFIG="   <security>
       <authConfigs>
@@ -44,14 +45,19 @@ fi
 cat > /resources/cruise-config.xml << EOFM
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="108">
-<server siteUrl="${GOCD_BASE_URL}">
+<server>
 ${GOCD_LDAP_CONFIG}
 </server>
 </cruise>
 EOFM
 
+chown go:go /resources/cruise-config.xml
+
 cp -arf /resources/cruise-config.xml /etc/go/cruise-config.xml
+chown go:go /etc/go/cruise-config.xml
+
 #/etc/init.d/go-server start
+service go-server restart
 #htpasswd -b -B -c /etc/go/authentication admin admin
 #htpasswd -b -B  /etc/go/authentication user1 user1 
 #/etc/init.d/go-server restart
