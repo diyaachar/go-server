@@ -22,7 +22,7 @@ if [[ ${LDAP_ENABLED} == "true" ]]; then
           </property>
           <property>
             <key>UserLoginFilter</key>
-           <value>uid={0}</value>i 
+           <value>uid={0}</value>
 	 </property>
           <property>
             <key>UserSearchFilter</key>
@@ -43,7 +43,7 @@ fi
 
 cat > /resources/cruise-config.xml << EOFM
 <?xml version="1.0" encoding="utf-8"?>
-<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="95">
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="108">
 <server siteUrl="${GOCD_BASE_URL}">
 ${GOCD_LDAP_CONFIG}
 </server>
