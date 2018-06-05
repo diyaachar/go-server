@@ -45,7 +45,7 @@ fi
 cat > /resources/cruise-config.xml << EOFM
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="108">
-<server>
+<server siteUrl="${GOCD_BASE_URL}">
 ${GOCD_LDAP_CONFIG}
 </server>
 </cruise>
